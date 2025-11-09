@@ -4,71 +4,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation SAÉ 1.01 - Stratégie d'Équipe (LSP)</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
-        .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-        h1 { color: #cc0000; text-align: center; border-bottom: 3px solid #ffcc00; padding-bottom: 10px; margin-top: 0; }
-        h2 { color: #005f9e; margin-top: 20px; border-left: 5px solid #ffcc00; padding-left: 10px; }
-        .slide { margin-bottom: 25px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
-        .slide strong { color: #000; }
-        .time { float: right; font-weight: bold; color: #cc0000; background: #ffcc00; padding: 5px 10px; border-radius: 5px; margin-left: 15px; }
-        .key-info { background-color: #e0f7fa; padding: 10px; border-radius: 5px; margin-top: 10px; }
-        .list-unstyled { list-style: none; padding-left: 0; }
-        .list-unstyled li { margin-bottom: 8px; }
+        /* Style personnalisé pour les transitions */
+        .slide {
+            transition: opacity 0.6s ease-in-out;
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-900 text-white font-sans flex flex-col justify-center items-center min-h-screen p-4">
 
-<div class="container">
-    <h1>Présentation : SAÉ 1.01 - Stratégie d'Équipe par LEGO® SERIOUS PLAY® (LSP)</h1>
-    <p style="text-align: right; font-style: italic;">(Durée Totale Estimée : 5 minutes)</p>
+    <!-- Conteneur principal de la présentation -->
+    <div id="presentation-container" class="relative w-full max-w-6xl aspect-video bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
 
-    <div class="slide">
-        <span class="time">0:30</span>
-        <h2>1. 🎯 Le Problème : La Réussite en SAÉ</h2>
-        <p>Le B.U.T. repose sur les <strong>SAÉ</strong>, dont la pondération augmente chaque année (<strong>40% en BUT1, jusqu'à 60% en BUT3</strong>).</p>
-        <p>Or, les étudiants fraîchement sortis du lycée <strong>manquent souvent de maturité et de méthodes en travail d'équipe</strong>.</p>
-        <p>Le constat est sans appel : dans <strong>90% des cas, 1 à 2 étudiants réalisent la quasi-totalité du travail</strong>, compromettant l'équité de l'évaluation et l'apprentissage collectif.</p>
-    </div>
-
-    <div class="slide">
-        <span class="time">1:00</span>
-        <h2>2. 💡 La Solution : Intégrer l'Humain et le LSP</h2>
-        <p>L'objectif de cette SAÉ 1.01 est de faire de la <strong>dynamique de groupe un moteur d'apprentissage</strong>, en assurant que chaque étudiant <strong>trouve sa place et soit un contributeur valorisé</strong>.</p>
-        <div class="key-info">
-            <strong>La Méthode : LEGO® SERIOUS PLAY® (LSP)</strong>
-            <ul class="list-unstyled">
-                <li>Méthode de réflexion et de communication par la <strong>construction de savoirs par les mains</strong>.</li>
-                <li>Elle exploite le lien <strong>main-cerveau</strong> : <strong>70-80% des cellules cérébrales sont connectées aux mains</strong>.</li>
-                <li>C'est une tentative audacieuse de transformer un réseau abstrait (relations d'équipe) en <strong>quelque chose de concret, manipulable et compréhensible par tous</strong>.</li>
+        <!-- Diapositive 1 : Titre et Introduction -->
+        <div class="slide active-slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-100 z-10">
+            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">SAÉ 1.01 : Du groupe subi à l'équipe choisie</h1>
+            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">Utiliser la SAÉ 1.01 pour hacker la dynamique de groupe en BUT1</h2>
+            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
+                <li><strong>L'enjeu :</strong> Les SAÉ pèsent 40% de la note en BUT1, et jusqu'à 60% en BUT3.</li>
+                <li><strong>Le constat :</strong> Dans 90% des cas, 1 ou 2 étudiants font tout le travail.</li>
+                <li><strong>L'objectif :</strong> Utiliser la SAÉ 1.01 pour qu'ils analysent leur propre équipe comme une organisation.</li>
+                <li><strong>La compétence :</strong> Valider l'AC13.03 - "Travailler en équipe avec méthodes".</li>
             </ul>
         </div>
+
+        <!-- Diapositive 2 : La Méthode (LSP) -->
+        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
+            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">La Méthode : LEGO® SERIOUS PLAY® (LSP)</h1>
+            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">L'outil de la participation à 100%</h2>
+            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
+                <li><strong>"Penser avec les mains" :</strong> 70-80% de nos cellules cérébrales sont connectées aux mains. Cela rend les idées abstraites (valeurs, processus) concrètes.</li>
+                <li><strong>Garantir l'implication totale :</strong> Le "Core Process" (Question, Construction, Partage, Réflexion) oblige chaque étudiant à participer.</li>
+                <li><strong>Climat de confiance :</strong> On critique les modèles, jamais les personnes. Cela favorise une communication honnête et un respect mutuel.</li>
+            </ul>
+        </div>
+
+        <!-- Diapositive 3 : Étape 1 (Individuel) -->
+        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-8 opacity-0">
+            <div class="lg:w-1/2">
+                <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Étape 1 : Cartographier les forces (AT1)</h1>
+                <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
+                    <li>Chaque étudiant répond par la construction : "Construisez vos valeurs", "Construisez votre 'super-pouvoir' (compétence clé)".</li>
+                    <li>C'est la base du <strong>Livrable 2 : la "Mosaïque des Talents"</strong>, qui cartographie les forces de chacun.</li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2">
+                <!-- Média : Image HEIC -->
+                <img src="IMG_3231.HEIC" alt="Construction individuelle LEGO" class="w-full h-auto max-h-[60vh] object-contain rounded-md shadow-lg">
+            </div>
+        </div>
+
+        <!-- Diapositive 4 : Étape 2 (Collectif) -->
+        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-8 opacity-0">
+            <div class="lg:w-1/2">
+                <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Étape 2 : Co-construire la stratégie (AT3)</h1>
+                <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
+                    <li>L'équipe construit son <strong>paysage collectif</strong> : parties prenantes (profs, délais) et processus (communication, gestion de conflit).</li>
+                    <li>Le résultat est leur <strong>Charte d'Équipe</strong> : 3 à 5 règles d'or qu'ils ont eux-mêmes définies pour réussir.</li>
+                </ul>
+            </div>
+            <div class="lg:w-1/2">
+                <!-- Média : Vidéo MOV -->
+                <video src="IMG_3966.mov" autoplay muted loop controls class="w-full h-auto max-h-[60vh] object-contain rounded-md shadow-lg" title="Vidéo de la stratégie d'équipe LEGO">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+            </div>
+        </div>
+
+        <!-- Diapositive 5 : Évaluation -->
+        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
+            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">L'Évaluation : Un Fil Rouge Réflexif</h1>
+            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">4 livrables pour mesurer l'apprentissage</h2>
+            <ol class="list-decimal list-inside text-lg lg:text-xl space-y-3">
+                <li><strong>Livrable 1 (15%) :</strong> Portfolio de Préparation (Individuel)</li>
+                <li><strong>Livrable 2 (35%) :</strong> Portfolio d'Équipe (La Charte + Mosaïque des Talents)</li>
+                <li><strong>Livrable 3 (20%) :</strong> La Note Réflexive (Analyse critique de la Charte après 2 mois)</li>
+                <li><strong>Livrable 4 (30%) :</strong> La Soutenance Orale (Bilan avec les photos des modèles)</li>
+            </ol>
+        </div>
+
+        <!-- Diapositive 6 : Conclusion -->
+        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
+            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Bénéfices : Plus qu'un jeu, leur premier outil de management</h1>
+            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
+                <li><strong>Pour les étudiants :</strong> Ils ne subissent plus le groupe. Ils apprennent à le gérer, à communiquer, et à analyser leurs propres processus.</li>
+                <li><strong>Pour nous :</strong> On garantit une implication de 100% et on valide concrètement la compétence AC13.03 : "Travailler en équipe avec méthodes".</li>
+            </ul>
+            <p class="mt-12 text-3xl font-bold text-center text-yellow-400">Merci de votre attention.</p>
+        </div>
+
+        <!-- Boutons de Navigation -->
+        <button id="prevBtn" class="nav-button absolute z-20 bottom-6 left-6 text-white bg-yellow-600 hover:bg-yellow-500 rounded-full p-3 transition-opacity" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button id="nextBtn" class="nav-button absolute z-20 bottom-6 right-6 text-white bg-yellow-600 hover:bg-yellow-500 rounded-full p-3 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
     </div>
 
-    <div class="slide">
-        <span class="time">1:30</span>
-        <h2>3. 🛠️ Déroulé de l'Atelier LSP (Core Process)</h2>
-        <p>L'atelier de 3h30 suit le **Core Process** de LSP (Question, Construction, Partage, Réflexion) pour :</p>
-        <ul class="list-unstyled">
-            <li><strong>Mosaïque des Talents (AT1)</strong> : Chaque individu construit un modèle pour exprimer ses <strong>valeurs, motivations, et sa "compétence acquise"</strong> (son "super-pouvoir") pour l'équipe.</li>
-            <li><strong>Le Paysage de l'Équipe (AT3)</strong> : Les équipes modélisent leurs <strong>parties prenantes</strong> (enseignants, délais, charge de travail) et leurs <strong>processus de gestion</strong> (décision, communication) pour mieux comprendre les influences de l'environnement IUT.</li>
-            <li><strong>Résultat : La Charte d'Équipe</strong> : L'analyse collective conduit à la co-construction de <strong>3 à 5 règles de fonctionnement concrètes</strong> (protocole de crise, répartition, etc.).</li>
-        </ul>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
 
-    <div class="slide">
-        <span class="time">1:00</span>
-        <h2>4. ✅ L'Évaluation (4 Livrables)</h2>
-        <p>L'évaluation s'étale sur le semestre et mesure l'introspection, la production et l'analyse critique :</p>
-        <ul class="list-unstyled">
-            <li><strong>Livrable 1 (15%)</strong> : **Portfolio de Préparation** (individuel).</li>
-            <li><strong>Livrable 2 (35%)</strong> : **Portfolio d'Équipe** - La **Mosaïque des Talents** collective et la **Charte d'Équipe**. La note valorise la <strong>pertinence de la synthèse</strong> et l'<strong>intégration des photos des modèles LEGO®</strong>.</li>
-            <li><strong>Livrable 3 (20%)</strong> : **Note Réflexive** (2 pages) - Analyse critique de l'efficacité de la Charte au travers de succès et de défis concrets. Valorise la **lucidité de l'analyse**.</li>
-            <li><strong>Livrable 4 (30%)</strong> : **Soutenance Orale** - Présentation du bilan de collaboration en 10 minutes, **impérativement appuyée sur les modèles LEGO®** pour raconter l'histoire du semestre. Valorise la **dynamique d'équipe et la cohésion**.</li>
-        </ul>
-    </div>
+            function showSlide(n) {
+                // Gérer l'index
+                currentSlide = n;
 
-    <div class="slide" style="background-color: #f7f7e0;">
-        <span class="time">1:00</span>
-        <h2>5. 🌟 La Valeur Ajoutée pour le BUT</h2>
-        <p>Ce dispositif garantit
+                // Mettre à jour l'affichage des diapositives
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('active-slide', 'opacity-100', 'z-10');
+                    slide.classList.add('opacity-0');
+                    if (index === n) {
+                        slide.classList.add('active-slide', 'opacity-100', 'z-10');
+                        slide.classList.remove('opacity-0');
+                    }
+                });
+
+                // Mettre à jour l'affichage des boutons
+                prevBtn.style.display = (n === 0) ? 'none' : 'block';
+                nextBtn.style.display = (n === slides.length - 1) ? 'none' : 'block';
+            }
+
+            // Écouteurs d'événements pour les boutons
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            });
+
+            // Écouteurs d'événements pour le clavier (flèches)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    // Simule un clic sur "suivant"
+                    if (currentSlide < slides.length - 1) {
+                         nextBtn.click();
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    // Simule un clic sur "précédent"
+                    if (currentSlide > 0) {
+                        prevBtn.click();
+                    }
+                }
+            });
+
+            // Afficher la première diapositive au chargement
+            showSlide(0);
+        });
+    </script>
+
+</body>
+</html>

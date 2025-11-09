@@ -3,170 +3,596 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Présentation SAÉ 1.01 - Stratégie d'Équipe (LSP)</title>
-    <!-- Chargement de Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SAE 1.01 - Stratégie d'Équipe avec LEGO® SERIOUS PLAY®</title>
     <style>
-        /* Style personnalisé pour les transitions */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
         .slide {
-            transition: opacity 0.6s ease-in-out;
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin: 25px 0 15px 0;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #555;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .content {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .list {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.2em;
+        }
+
+        .list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .emoji-list li:before {
+            font-size: 1.5em;
+        }
+
+        .emoji-list li:nth-child(1):before { content: "🧠"; }
+        .emoji-list li:nth-child(2):before { content: "⚖️"; }
+        .emoji-list li:nth-child(3):before { content: "🎯"; }
+
+        .timeline {
+            margin: 30px 0;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '📅';
+            position: absolute;
+            left: -35px;
+            font-size: 1.5em;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.3em;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            z-index: 1000;
+        }
+
+        .intro-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .intro-slide h1 {
+            color: white;
+            font-size: 4em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .intro-slide .subtitle {
+            color: #f0f0f0;
+            font-size: 2em;
+        }
+
+        /* La brique CSS a été supprimée car remplacée par l'image */
+
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .deliverables {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .deliverable {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid #667eea;
+        }
+
+        .deliverable-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .deliverable-weight {
+            font-size: 2em;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        @media print {
+            .navigation, .slide-number {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white font-sans flex flex-col justify-center items-center min-h-screen p-4">
+<body>
+    <div class="presentation">
+        <div class="slide active intro-slide">
+            <h1>SAE 1.01</h1>
+            <div class="subtitle">"Et si la clé de la réussite de nos étudiants<br>se construisait... brique par brique ?"</div>
+            
+            <img src="IMG_3231.HEIC" alt="Construction LEGO d'une équipe" style="width: 60%; max-width: 700px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); margin: 30px auto; display: block;">
 
-    <!-- Conteneur principal de la présentation -->
-    <div id="presentation-container" class="relative w-full max-w-6xl aspect-video bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
+            <div class="content" style="margin-top: 30px; font-size: 1.6em;">
+                <p><strong>Question :</strong> Quelle est la toute première organisation<br>que nos étudiants vont devoir gérer cette année ?</p>
+                <p style="margin-top: 40px; font-size: 1.5em; color: #ffd700;">➜ <span class="highlight" style="font-size: 1.2em;">Leur équipe de SAE !</span></p>
+            </div>
+        </div>
 
-        <!-- Diapositive 1 : Titre et Introduction -->
-        <div class="slide active-slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-100 z-10">
-            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">SAÉ 1.01 : Du groupe subi à l'équipe choisie</h1>
-            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">Utiliser la SAÉ 1.01 pour hacker la dynamique de groupe en BUT1</h2>
-            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
-                <li><strong>L'enjeu :</strong> Les SAÉ pèsent 40% de la note en BUT1, et jusqu'à 60% en BUT3.</li>
-                <li><strong>Le constat :</strong> Dans 90% des cas, 1 ou 2 étudiants font tout le travail.</li>
-                <li><strong>L'objectif :</strong> Utiliser la SAÉ 1.01 pour qu'ils analysent leur propre équipe comme une organisation.</li>
-                <li><strong>La compétence :</strong> Valider l'AC13.03 - "Travailler en équipe avec méthodes".</li>
+        <div class="slide">
+            <h2>Un enjeu crucial</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">de la note finale<br>en BUT1</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">de la note finale<br>en BUT2</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">de la note finale<br>en BUT3</div>
+                </div>
+            </div>
+            <div class="key-points">
+                <div class="key-point">
+                    ⚠️ Problème récurrent : équipes dysfonctionnelles, conflits, free-riders
+                </div>
+                <div class="key-point">
+                    ✅ Besoin : donner aux étudiants des outils pour gérer leur organisation dès le départ
+                </div>
+                <div class="key-point">
+                    🎯 Enjeu : constituer un bon dossier pour Mon Master (concurrence rude après le BUT)
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>La Solution : SAE 1.01 + LEGO® SERIOUS PLAY®</h2>
+            <h3>Situer une organisation dans son environnement... en commençant par la leur !</h3>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Objectifs pédagogiques</h3>
+                    <ul class="list">
+                        <li>Caractériser leur équipe (forces, faiblesses, compétences)</li>
+                        <li>Identifier les parties prenantes et leurs relations</li>
+                        <li>Définir les processus de gestion (décision, communication, crise)</li>
+                        <li>Prendre en compte l'environnement (IUT, règlement, charge de travail)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>La méthode LSP</h3>
+                    <ul class="list">
+                        <li>Construire avec les mains → libère <span class="highlight">70-80% des capacités cognitives</span></li>
+                        <li><span class="highlight">100% de participation</span> garantie</li>
+                        <li>Métaphores pour rendre concret l'abstrait</li>
+                        <li>Utilisée par Google, Microsoft, NASA...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Un parcours progressif sur le semestre</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">25/09 - Atelier LSP 1 (3h30)</div>
+                    <div class="timeline-content">
+                        <strong>Mosaïque des talents</strong> : forces & vigilances individuelles<br>
+                        <strong>Compétence collaborative clé</strong> de l'équipe
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">26/09 - 02/10 - Livrables 1 & 2</div>
+                    <div class="timeline-content">
+                        <strong>Portfolio individuel</strong> : introspection sur ses talents<br>
+                        <strong>Portfolio d'équipe</strong> : cartographie des forces collectives + charte
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">11/12 - Atelier LSP 2 (3h)</div>
+                    <div class="timeline-content">
+                        <strong>Bilan</strong> : modèles "Succès" & "Défi"<br>
+                        <strong>Ajustements</strong> de la stratégie
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">17/12 - Note réflexive</div>
+                    <div class="timeline-content">
+                        Analyse critique de l'expérience de collaboration
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">18/12 - Soutenance orale</div>
+                    <div class="timeline-content">
+                        Présentation synthétique du bilan et des apprentissages
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h2>Pourquoi ça marche ?</h2>
+            <ul class="list emoji-list" style="margin-top: 50px;">
+                <li>
+                    <strong style="font-size: 1.4em; color: #667eea;">Savoir par les mains</strong><br>
+                    <span style="font-size: 0.95em;">Connexion main-cerveau : on sait plus qu'on ne croit savoir<br>
+                    Construction = apprentissage actif et durable</span>
+                </li>
+                <li style="margin-top: 40px;">
+                    <strong style="font-size: 1.4em; color: #667eea;">Équité totale</strong><br>
+                    <span style="font-size: 0.95em;">Tout le monde construit → tout le monde partage<br>
+                    Fini la domination des "grandes gueules"</span>
+                </li>
+                <li style="margin-top: 40px;">
+                    <strong style="font-size: 1.4em; color: #667eea;">Résultats concrets</strong><br>
+                    <span style="font-size: 0.95em;">Charte d'équipe opérationnelle<br>
+                    Compréhension partagée • Engagement fort</span>
+                </li>
             </ul>
         </div>
 
-        <!-- Diapositive 2 : La Méthode (LSP) -->
-        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
-            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">La Méthode : LEGO® SERIOUS PLAY® (LSP)</h1>
-            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">L'outil de la participation à 100%</h2>
-            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
-                <li><strong>"Penser avec les mains" :</strong> 70-80% de nos cellules cérébrales sont connectées aux mains. Cela rend les idées abstraites (valeurs, processus) concrètes.</li>
-                <li><strong>Garantir l'implication totale :</strong> Le "Core Process" (Question, Construction, Partage, Réflexion) oblige chaque étudiant à participer.</li>
-                <li><strong>Climat de confiance :</strong> On critique les modèles, jamais les personnes. Cela favorise une communication honnête et un respect mutuel.</li>
-            </ul>
+        <div class="slide">
+            <h2>4 livrables évalués</h2>
+            <div class="deliverables">
+                <div class="deliverable">
+                    <div class="deliverable-title">1. Portfolio individuel</div>
+                    <div class="deliverable-weight">15%</div>
+                    <p style="margin-top: 15px;">Introspection sur ses talents, motivations et valeurs</p>
+                </div>
+                
+                <div class="deliverable">
+                    <div class="deliverable-title">2. Portfolio d'équipe</div>
+                    <div class="deliverable-weight">35%</div>
+                    <p style="margin-top: 15px;">Cartographie des forces + Charte d'équipe + Film stratégie</p>
+                </div>
+                
+                <div class="deliverable">
+                    <div class="deliverable-title">3. Note réflexive</div>
+                    <div class="deliverable-weight">20%</div>
+                    <p style="margin-top: 15px;">Analyse critique de la collaboration après le semestre</p>
+                </div>
+                
+                <div class="deliverable">
+                    <div class="deliverable-title">4. Soutenance orale</div>
+                    <div class="deliverable-weight">30%</div>
+                    <p style="margin-top: 15px;">Présentation du bilan avec modèles LEGO® (10 min + 5 min questions)</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Diapositive 3 : Étape 1 (Individuel) -->
-        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-8 opacity-0">
-            <div class="lg:w-1/2">
-                <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Étape 1 : Cartographier les forces (AT1)</h1>
-                <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
-                    <li>Chaque étudiant répond par la construction : "Construisez vos valeurs", "Construisez votre 'super-pouvoir' (compétence clé)".</li>
-                    <li>C'est la base du <strong>Livrable 2 : la "Mosaïque des Talents"</strong>, qui cartographie les forces de chacun.</li>
-                </ul>
+        <div class="slide">
+            <h2>Place à nos étudiants !</h2>
+            <div class="content" style="text-align: center;">
+                <p style="font-size: 1.4em; margin-bottom: 30px;">
+                    "Les étudiants découvrent leurs forces collectives<br>et définissent leur stratégie..."
+                </p>
             </div>
-            <div class="lg:w-1/2">
-                <!-- Média : Image HEIC -->
-                <img src="IMG_3231.HEIC" alt="Construction individuelle LEGO" class="w-full h-auto max-h-[60vh] object-contain rounded-md shadow-lg">
-            </div>
-        </div>
-
-        <!-- Diapositive 4 : Étape 2 (Collectif) -->
-        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col lg:flex-row items-center gap-8 opacity-0">
-            <div class="lg:w-1/2">
-                <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Étape 2 : Co-construire la stratégie (AT3)</h1>
-                <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
-                    <li>L'équipe construit son <strong>paysage collectif</strong> : parties prenantes (profs, délais) et processus (communication, gestion de conflit).</li>
-                    <li>Le résultat est leur <strong>Charte d'Équipe</strong> : 3 à 5 règles d'or qu'ils ont eux-mêmes définies pour réussir.</li>
-                </ul>
-            </div>
-            <div class="lg:w-1/2">
-                <!-- Média : Vidéo MOV -->
-                <video src="IMG_3966.mov" autoplay muted loop controls class="w-full h-auto max-h-[60vh] object-contain rounded-md shadow-lg" title="Vidéo de la stratégie d'équipe LEGO">
-                    Votre navigateur ne supporte pas la vidéo.
+            
+            <div class="video-container" style="padding: 0; background: none; margin-top: 10px; margin-bottom: 10px;">
+                <video src="IMG_3966.mov" controls style="width: 90%; max-width: 800px; border-radius: 8px; margin: 0 auto; display: block; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" autoplay muted loop>
+                    Votre navigateur ne supporte pas la balise vidéo.
                 </video>
             </div>
         </div>
 
-        <!-- Diapositive 5 : Évaluation -->
-        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
-            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">L'Évaluation : Un Fil Rouge Réflexif</h1>
-            <h2 class="text-xl lg:text-2xl font-light text-gray-200 mb-6">4 livrables pour mesurer l'apprentissage</h2>
-            <ol class="list-decimal list-inside text-lg lg:text-xl space-y-3">
-                <li><strong>Livrable 1 (15%) :</strong> Portfolio de Préparation (Individuel)</li>
-                <li><strong>Livrable 2 (35%) :</strong> Portfolio d'Équipe (La Charte + Mosaïque des Talents)</li>
-                <li><strong>Livrable 3 (20%) :</strong> La Note Réflexive (Analyse critique de la Charte après 2 mois)</li>
-                <li><strong>Livrable 4 (30%) :</strong> La Soutenance Orale (Bilan avec les photos des modèles)</li>
-            </ol>
+        <div class="slide">
+            <h2>Questions & Perspectives</h2>
+            <div class="content" style="margin-top: 50px;">
+                <div class="card" style="margin-bottom: 30px;">
+                    <h3>💡 Points de discussion</h3>
+                    <ul class="list">
+                        <li>Cette approche est-elle transférable à d'autres SAE ?</li>
+                        <li>Intérêt pour une formation LSP entre collègues ?</li>
+                        <li>Comment capitaliser sur cette expérience ?</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📚 Ressources disponibles</h3>
+                    <ul class="list">
+                        <li>Documents pédagogiques LSP</li>
+                        <li>Retours d'expérience des premières promotions</li>
+                        <li>Certification facilitateurs LSP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; font-size: 1.8em; color: #667eea;">
+                <strong>Vos questions ?</strong>
+            </div>
         </div>
+    </div>
 
-        <!-- Diapositive 6 : Conclusion -->
-        <div class="slide absolute top-0 left-0 w-full h-full p-8 lg:p-16 flex flex-col justify-center opacity-0">
-            <h1 class="text-3xl lg:text-5xl font-bold text-yellow-400 mb-4">Bénéfices : Plus qu'un jeu, leur premier outil de management</h1>
-            <ul class="list-disc list-inside text-lg lg:text-xl space-y-3">
-                <li><strong>Pour les étudiants :</strong> Ils ne subissent plus le groupe. Ils apprennent à le gérer, à communiquer, et à analyser leurs propres processus.</li>
-                <li><strong>Pour nous :</strong> On garantit une implication de 100% et on valide concrètement la compétence AC13.03 : "Travailler en équipe avec méthodes".</li>
-            </ul>
-            <p class="mt-12 text-3xl font-bold text-center text-yellow-400">Merci de votre attention.</p>
-        </div>
+    <div class="slide-number">
+        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+    </div>
 
-        <!-- Boutons de Navigation -->
-        <button id="prevBtn" class="nav-button absolute z-20 bottom-6 left-6 text-white bg-yellow-600 hover:bg-yellow-500 rounded-full p-3 transition-opacity" style="display: none;">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-        </button>
-        <button id="nextBtn" class="nav-button absolute z-20 bottom-6 right-6 text-white bg-yellow-600 hover:bg-yellow-500 rounded-full p-3 transition-opacity">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
-
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← Précédent</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Suivant →</button>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            let currentSlide = 0;
-
-            function showSlide(n) {
-                // Gérer l'index
-                currentSlide = n;
-
-                // Mettre à jour l'affichage des diapositives
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active-slide', 'opacity-100', 'z-10');
-                    slide.classList.add('opacity-0');
-                    if (index === n) {
-                        slide.classList.add('active-slide', 'opacity-100', 'z-10');
-                        slide.classList.remove('opacity-0');
-                    }
-                });
-
-                // Mettre à jour l'affichage des boutons
-                prevBtn.style.display = (n === 0) ? 'none' : 'block';
-                nextBtn.style.display = (n === slides.length - 1) ? 'none' : 'block';
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
             }
-
-            // Écouteurs d'événements pour les boutons
-            prevBtn.addEventListener('click', () => {
-                if (currentSlide > 0) {
-                    showSlide(currentSlide - 1);
-                }
-            });
-
-            nextBtn.addEventListener('click', () => {
-                if (currentSlide < slides.length - 1) {
-                    showSlide(currentSlide + 1);
-                }
-            });
-
-            // Écouteurs d'événements pour le clavier (flèches)
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight' || e.key === ' ') {
-                    // Simule un clic sur "suivant"
-                    if (currentSlide < slides.length - 1) {
-                         nextBtn.click();
-                    }
-                } else if (e.key === 'ArrowLeft') {
-                    // Simule un clic sur "précédent"
-                    if (currentSlide > 0) {
-                        prevBtn.click();
-                    }
-                }
-            });
-
-            // Afficher la première diapositive au chargement
-            showSlide(0);
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1); // Corrigé : c'était + 1 par erreur
+            }
+        }
+        
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
         });
+        
+        // Initialisation
+        showSlide(0);
     </script>
-
 </body>
 </html>
